@@ -393,15 +393,7 @@ RESUMEN DE PRUEBAS AUTOMATIZADAS
 
 ---
 
-## 8. Guia de Exposicion para la Presentacion
-
-Para la exposicion del proyecto ante el profesor y companeros, se ha creado una guia dedicada paso a paso con el libreto completo de que decir, que archivos mostrar, como demostrar la plataforma en vivo y un banco de preguntas frecuentes:
-
-👉 **[Consultar la Guia de Exposicion Completa (GUIA_EXPOSICION.md)](GUIA_EXPOSICION.md)**
-
----
-
-## 9. Paleta de Colores Oficial y Diseno Visual
+## 8. Paleta de Colores Oficial y Diseno Visual
 
 El diseno visual se apega estrictamente a la paleta oficial institucional de emergencias:
 
