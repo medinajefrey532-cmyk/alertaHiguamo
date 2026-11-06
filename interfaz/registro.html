@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos de la vista de registro y control operativo -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Incidencias — Alerta Higuamo</title>
+</head>
+
+<body>
+
+    <!-- Encabezado principal del portal -->
+    <header id="encabezado-principal">
+        <div class="encabezado-contenido">
+            <!-- Logotipo del sistema -->
+            <a href="index.html" class="logo-enlace">
+                <img src="imagenes/logo.png" alt="Logo Alerta Higuamo" class="logo">
+                <div class="logo-texto">
+                    <h1>Alerta Higuamo</h1>
+                    <p>Región Higuamo • San Pedro • Hato Mayor • Monte Plata</p>
+                </div>
+            </a>
+            
+            <!-- Barra de navegación regional -->
+            <nav class="menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="reportar.html" class="nav-link btn-nav-alerta">Reportar Emergencia</a>
+                <a href="consultar.html" class="nav-link">Consultar Estado</a>
+                <a href="registro.html" class="nav-link active">Registro</a>
+                <a href="mapa.html" class="nav-link">Mapa Regional</a>
+                <a href="refugios.html" class="nav-link">Refugios</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor central -->
+    <main class="contenedor">
+
+        <!-- Tarjeta de gestión y seguimiento general de incidencias -->
+        <section class="card">
+            <div class="flex-entre">
+                <div>
+                    <h2>Registro General de Incidencias</h2>
+                    <p style="color: var(--texto-secundario); margin: 0;">Historial cronológico de reportes entrantes en la Región Higuamo. Las incidencias cerradas se desplazan al final de la lista.</p>
+                </div>
+                <!-- Botón para refrescar la lista de emergencias y métricas en vivo -->
+                <button type="button" class="btn btn-sm btn-outline" onclick="cargarIncidencias(false); cargarEstadisticas();">Actualizar Registro</button>
+            </div>
+
+            <!-- Barra de filtros: permite consultar incidencias por provincia, prioridad y estado -->
+            <div class="barra-filtros" style="margin-top: 20px;">
+                <!-- Filtro por provincia de la Región Higuamo -->
+                <div class="filtro-item">
+                    <label>Provincia:</label>
+                    <select id="filtro-provincia">
+                        <option value="">Todas las provincias</option>
+                        <option value="San Pedro de Macorís">San Pedro de Macorís</option>
+                        <option value="Hato Mayor">Hato Mayor</option>
+                        <option value="Monte Plata">Monte Plata</option>
+                    </select>
+                </div>
+
+                <!-- Filtro por nivel de gravedad o prioridad asignada -->
+                <div class="filtro-item">
+                    <label>Prioridad:</label>
+                    <select id="filtro-prioridad">
+                        <option value="">Todas las prioridades</option>
+                        <option value="alta">Alta (Críticas)</option>
+                        <option value="media">Media</option>
+                        <option value="baja">Baja</option>
+                    </select>
+                </div>
+
+                <!-- Filtro por estado del ciclo de vida de la emergencia -->
+                <div class="filtro-item">
+                    <label>Estado:</label>
+                    <select id="filtro-estado">
+                        <option value="todas">Todos los estados</option>
+                        <option value="pendiente">Pendientes</option>
+                        <option value="en_proceso">En Proceso</option>
+                        <option value="atendida">Atendidas</option>
+                        <option value="cerrada">Cerradas (Al fondo)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Contenedor donde se inyectan las insignias con la cantidad de reportes por provincia -->
+            <div id="distribucion-provincias" class="distribucion-provincias-grid"></div>
+
+            <!-- Contenedor dinámico donde app.js renderiza todas las tarjetas de incidencias -->
+            <div id="lista-incidencias" class="lista-tarjetas-grid"></div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página institucional -->
+    <footer>
+        <p><strong>ComunidadAlerta Higuamo</strong> — San Pedro de Macorís • Hato Mayor • Monte Plata</p>
+        <p>© 2026 Plataforma de Gestión y Coordinación de Emergencias</p>
+    </footer>
+
+    <!-- Script cliente para interactividad y consumo de la API -->
+    <script src="app.js"></script>
+</body>
+</html>

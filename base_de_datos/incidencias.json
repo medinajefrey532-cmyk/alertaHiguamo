@@ -1,0 +1,191 @@
+[
+  {
+    "id": "INC-001",
+    "titulo": "Inundación en Barrio Blanco por desbordamiento del Río Higuamo",
+    "descripcion": "El nivel del agua ha subido más de un metro en varias viviendas. Se necesita evacuación de familias.",
+    "tipo": "inundacion",
+    "provincia": "San Pedro de Macorís",
+    "municipio": "San Pedro de Macorís",
+    "comunidad": "Barrio Blanco",
+    "coordenadas": {
+      "lat": 18.4552,
+      "lng": -69.3148
+    },
+    "prioridad": "alta",
+    "estado": "en_proceso",
+    "reportadoPor": {
+      "nombre": "Carlos Santana",
+      "contacto": "809-555-0142"
+    },
+    "afectadosEstimados": 35,
+    "fechaReporte": "2026-11-02T14:30:00.000Z",
+    "suministrosRecibidos": [
+      {
+        "recursoId": "REC-004",
+        "nombre": "Botes Inflables de Rescate con Motor",
+        "cantidad": 4,
+        "unidad": "unidades",
+        "fecha": "2026-11-02T15:00:00.000Z"
+      },
+      {
+        "recursoId": "REC-001",
+        "nombre": "Botellones de Agua Potable (5 gal)",
+        "cantidad": 150,
+        "unidad": "botellones",
+        "fecha": "2026-11-02T15:30:00.000Z"
+      }
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T14:30:00.000Z",
+        "accion": "Reporte de emergencia registrado en el sistema",
+        "usuario": "Carlos Santana"
+      },
+      {
+        "fecha": "2026-11-02T15:00:00.000Z",
+        "accion": "Despacho de suministros recibido: 4 unidades de Botes Inflables de Rescate con Motor",
+        "usuario": "Encargado de Recursos"
+      },
+      {
+        "fecha": "2026-11-02T15:15:00.000Z",
+        "accion": "Estado cambiado a en_proceso. Brigada de rescate despachada.",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-02T15:30:00.000Z",
+        "accion": "Despacho de suministros recibido: 150 botellones de Botellones de Agua Potable (5 gal)",
+        "usuario": "Encargado de Recursos"
+      }
+    ]
+  },
+  {
+    "id": "INC-002",
+    "titulo": "Carretera bloqueada por deslizamiento de tierra en El Valle",
+    "descripcion": "Árboles caídos y lodo bloquean ambos carriles impidiendo el paso de vehículos de emergencia.",
+    "tipo": "carretera_bloqueada",
+    "provincia": "Hato Mayor",
+    "municipio": "El Valle",
+    "comunidad": "Tramo El Valle - Sabana de la Mar",
+    "coordenadas": {
+      "lat": 18.9667,
+      "lng": -69.3833
+    },
+    "prioridad": "alta",
+    "estado": "pendiente",
+    "reportadoPor": {
+      "nombre": "María Altagracia Peña",
+      "contacto": "829-555-0198"
+    },
+    "afectadosEstimados": 120,
+    "fechaReporte": "2026-11-02T16:10:00.000Z",
+    "suministrosRecibidos": [
+      {
+        "recursoId": "REC-002",
+        "nombre": "Raciones Alimenticias Secas de Emergencia",
+        "cantidad": 350,
+        "unidad": "raciones",
+        "fecha": "2026-11-02T16:30:00.000Z"
+      }
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T16:10:00.000Z",
+        "accion": "Reporte de emergencia registrado en el sistema",
+        "usuario": "María Altagracia Peña"
+      },
+      {
+        "fecha": "2026-11-02T16:30:00.000Z",
+        "accion": "Despacho de suministros recibido: 350 raciones de Raciones Alimenticias Secas de Emergencia",
+        "usuario": "Encargado de Recursos"
+      }
+    ]
+  },
+  {
+    "id": "INC-003",
+    "titulo": "Comunidad aislada sin agua potable tras crecida del río Comate",
+    "descripcion": "El puente peatonal colapsó. La comunidad requiere raciones alimenticias y agua embotellada de emergencia.",
+    "tipo": "comunidad_aislada",
+    "provincia": "Monte Plata",
+    "municipio": "Bayaguana",
+    "comunidad": "Comatillo",
+    "coordenadas": {
+      "lat": 18.7561,
+      "lng": -69.6322
+    },
+    "prioridad": "media",
+    "estado": "cerrada",
+    "reportadoPor": {
+      "nombre": "José Ramón De la Rosa",
+      "contacto": "809-555-0321"
+    },
+    "afectadosEstimados": 60,
+    "fechaReporte": "2026-11-02T17:00:00.000Z",
+    "suministrosRecibidos": [
+      {
+        "recursoId": "REC-003",
+        "nombre": "Kits de Primeros Auxilios y Medicamentos Básicos",
+        "cantidad": 60,
+        "unidad": "kits",
+        "fecha": "2026-11-02T17:15:00.000Z"
+      }
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T17:00:00.000Z",
+        "accion": "Reporte de emergencia registrado en el sistema",
+        "usuario": "José Ramón De la Rosa"
+      },
+      {
+        "fecha": "2026-11-02T17:15:00.000Z",
+        "accion": "Despacho de suministros recibido: 60 kits de Kits de Primeros Auxilios y Medicamentos Básicos",
+        "usuario": "Encargado de Recursos"
+      },
+      {
+        "fecha": "2026-11-03T23:17:09.364Z",
+        "accion": "Estado cambiado de 'pendiente' a 'cerrada'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:02.137Z",
+        "accion": "Estado cambiado de 'cerrada' a 'atendida'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:07.297Z",
+        "accion": "Estado cambiado de 'atendida' a 'cerrada'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:08.929Z",
+        "accion": "Estado cambiado de 'cerrada' a 'pendiente'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:10.377Z",
+        "accion": "Estado cambiado de 'pendiente' a 'en_proceso'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:17.442Z",
+        "accion": "Estado cambiado de 'en_proceso' a 'pendiente'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:20.609Z",
+        "accion": "Estado cambiado de 'pendiente' a 'en_proceso'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:22.081Z",
+        "accion": "Estado cambiado de 'en_proceso' a 'atendida'",
+        "usuario": "Coordinador Regional"
+      },
+      {
+        "fecha": "2026-11-03T23:19:23.545Z",
+        "accion": "Estado cambiado de 'atendida' a 'cerrada'",
+        "usuario": "Coordinador Regional"
+      }
+    ],
+    "fechaUltimaModificacion": "2026-11-03T23:19:23.545Z"
+  }
+]

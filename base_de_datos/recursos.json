@@ -1,0 +1,90 @@
+[
+  {
+    "id": "REC-001",
+    "nombre": "Botellones de Agua Potable (5 gal)",
+    "categoria": "agua",
+    "unidad": "botellones",
+    "cantidadTotal": 500,
+    "cantidadDisponible": 350,
+    "cantidadEntregada": 150,
+    "ubicacionAlmacen": "Centro de Acopio Regional - SPM",
+    "provincia": "San Pedro de Macorís",
+    "responsable": "Lic. Marcos Sosa",
+    "historialEntregas": [
+      {
+        "fecha": "2026-11-02T15:30:00.000Z",
+        "cantidad": 150,
+        "unidad": "botellones",
+        "incidenciaId": "INC-001",
+        "destino": "INC-001 - Barrio Blanco (San Pedro de Macorís)"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T15:30:00.000Z"
+  },
+  {
+    "id": "REC-002",
+    "nombre": "Raciones Alimenticias Secas de Emergencia",
+    "categoria": "alimentos",
+    "unidad": "raciones",
+    "cantidadTotal": 1000,
+    "cantidadDisponible": 650,
+    "cantidadEntregada": 350,
+    "ubicacionAlmacen": "Gobernación Provincial de Hato Mayor",
+    "provincia": "Hato Mayor",
+    "responsable": "Ing. Elena Ramos",
+    "historialEntregas": [
+      {
+        "fecha": "2026-11-02T16:30:00.000Z",
+        "cantidad": 350,
+        "unidad": "raciones",
+        "incidenciaId": "INC-002",
+        "destino": "INC-002 - Tramo El Valle - Sabana de la Mar (Hato Mayor)"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T16:30:00.000Z"
+  },
+  {
+    "id": "REC-003",
+    "nombre": "Kits de Primeros Auxilios y Medicamentos Básicos",
+    "categoria": "salud",
+    "unidad": "kits",
+    "cantidadTotal": 200,
+    "cantidadDisponible": 140,
+    "cantidadEntregada": 60,
+    "ubicacionAlmacen": "Hospital Provincial de Monte Plata",
+    "provincia": "Monte Plata",
+    "responsable": "Dra. Wendy Severino",
+    "historialEntregas": [
+      {
+        "fecha": "2026-11-02T17:15:00.000Z",
+        "cantidad": 60,
+        "unidad": "kits",
+        "incidenciaId": "INC-003",
+        "destino": "INC-003 - Comatillo (Monte Plata)"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T17:15:00.000Z"
+  },
+  {
+    "id": "REC-004",
+    "nombre": "Botes Inflables de Rescate con Motor",
+    "categoria": "vehiculos_rescate",
+    "unidad": "unidades",
+    "cantidadTotal": 6,
+    "cantidadDisponible": 2,
+    "cantidadEntregada": 4,
+    "ubicacionAlmacen": "Defensa Civil San Pedro de Macorís",
+    "provincia": "San Pedro de Macorís",
+    "responsable": "Capitán Luis Benítez",
+    "historialEntregas": [
+      {
+        "fecha": "2026-11-02T15:00:00.000Z",
+        "cantidad": 4,
+        "unidad": "unidades",
+        "incidenciaId": "INC-001",
+        "destino": "INC-001 - Barrio Blanco (San Pedro de Macorís)"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T16:40:00.000Z"
+  }
+]

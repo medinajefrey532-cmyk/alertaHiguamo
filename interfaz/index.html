@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración del documento y codificación de caracteres -->
+    <meta charset="UTF-8">
+    <!-- Hoja de estilos con la paleta de colores institucional -->
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Ícono del sistema -->
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+    <!-- Ajuste responsivo para celulares y dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta Higuamo — Sistema de Gestión y Respuesta a Emergencias</title>
+</head>
+
+<body>
+
+    <!-- Identificador para lógica de inicio: indica a app.js que solo cargue incidencias activas -->
+    <div id="es-pagina-inicio" style="display: none;"></div>
+
+    <!-- Encabezado principal: logotipo institucional y barra de navegación entre módulos -->
+    <header id="encabezado-principal">
+        <div class="encabezado-contenido">
+            <!-- Enlace al inicio con el logo oficial -->
+            <a href="index.html" class="logo-enlace">
+                <img src="imagenes/logo.png" alt="Logo Alerta Higuamo" class="logo">
+                <div class="logo-texto">
+                    <h1>Alerta Higuamo</h1>
+                    <p>Región Higuamo • San Pedro • Hato Mayor • Monte Plata</p>
+                </div>
+            </a>
+            
+            <!-- Menú de navegación: enlaces a los diferentes módulos del sistema -->
+            <nav class="menu">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="reportar.html" class="nav-link btn-nav-alerta">Reportar Emergencia</a>
+                <a href="consultar.html" class="nav-link">Consultar Estado</a>
+                <a href="registro.html" class="nav-link">Registro</a>
+                <a href="mapa.html" class="nav-link">Mapa Regional</a>
+                <a href="refugios.html" class="nav-link">Refugios</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor central del contenido principal -->
+    <main class="contenedor">
+
+        <!-- Banner hero: presenta la misión del sistema y las provincias cubiertas -->
+        <section class="hero-institucional">
+            <span class="hero-tag">Centro de Operaciones y Respuesta Inmediata</span>
+            <h2>Sistema Centralizado de Alerta y Coordinación de Emergencias</h2>
+            <p>Plataforma para el registro oportuno de incidencias, priorización de casos críticos, asignación de brigadas de rescate y monitoreo de albergues e insumos en las provincias de San Pedro de Macorís, Hato Mayor y Monte Plata.</p>
+        </section>
+
+        <!-- Métricas operativas en vivo: consulta la API /api/estadisticas y muestra números en tiempo real -->
+        <section class="metricas-resumen-banner">
+            <!-- Contador de emergencias actualmente activas (pendientes, en proceso, atendidas) -->
+            <div class="metrica-box metrica-alerta">
+                <span class="metrica-num" id="stat-activas">-</span>
+                <span class="metrica-txt">Emergencias Activas</span>
+            </div>
+            <!-- Contador histórico total de reportes recibidos en el sistema -->
+            <div class="metrica-box">
+                <span class="metrica-num" id="stat-total">-</span>
+                <span class="metrica-txt">Total Reportes Recibidos</span>
+            </div>
+            <!-- Total de plazas libres disponibles en la red de albergues comunitarios -->
+            <div class="metrica-box metrica-rescate">
+                <span class="metrica-num" id="stat-refugios">-</span>
+                <span class="metrica-txt">Plazas Libres en Refugios</span>
+            </div>
+            <!-- Estimación acumulada de personas afectadas por las situaciones reportadas -->
+            <div class="metrica-box metrica-prevencion">
+                <span class="metrica-num" id="stat-afectados">-</span>
+                <span class="metrica-txt">Personas Afectadas</span>
+            </div>
+        </section>
+
+        <!-- Acciones directas para el ciudadano: reportar nueva situación o consultar estado -->
+        <section class="acciones-principales-grid">
+            <!-- Tarjeta de acción: botón directo para reportar emergencia -->
+            <div class="accion-card accion-reporte">
+                <div class="accion-header">
+                    <div class="accion-icono-svg">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h3>¿Tienes una emergencia en tu comunidad?</h3>
+                </div>
+                <p>Informa de inmediato sobre inundaciones, personas atrapadas, derrumbes o carreteras bloqueadas para que las brigadas de auxilio acudan con rapidez.</p>
+                <a href="reportar.html" class="btn btn-emergencia">Registrar Reporte de Emergencia</a>
+            </div>
+
+            <!-- Tarjeta de acción: formulario de consulta rápida por código de caso -->
+            <div class="accion-card accion-consulta">
+                <div class="accion-header">
+                    <div class="accion-icono-svg">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3>Consultar Estado de un Reporte</h3>
+                </div>
+                <p>Verifica si tu caso ya fue recibido, asignado o atendido ingresando el código de seguimiento que se te entregó.</p>
+                <!-- Formulario que redirige a consultar.html con el parámetro en URL ?codigo=... -->
+                <form action="consultar.html" method="GET" class="form-busqueda-rapida">
+                    <input type="text" name="codigo" placeholder="Ej: INC-001" required>
+                    <button type="submit" class="btn btn-primario">Consultar</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sección de incidencias activas: renderizado dinámico de tarjetas abiertas desde la API -->
+        <section class="card">
+            <div class="flex-entre">
+                <div>
+                    <h2>Incidencias Activas en la Región Higuamo</h2>
+                    <p style="color: var(--texto-secundario); margin: 0; font-size: 0.88rem;">Mostrando únicamente las emergencias abiertas en atención (pendientes, en proceso y atendidas).</p>
+                </div>
+                <!-- Enlace hacia la bitácora general de registro -->
+                <a href="registro.html" class="link-accion">Ver registro completo &rarr;</a>
+            </div>
+            <!-- Contenedor dinámico donde app.js inyecta las tarjetas de emergencias activas -->
+            <div id="lista-incidencias" class="lista-tarjetas-grid"></div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página institucional con créditos y derechos -->
+    <footer>
+        <p><strong>ComunidadAlerta Higuamo</strong> — San Pedro de Macorís • Hato Mayor • Monte Plata</p>
+        <p>© 2026 Plataforma de Gestión y Coordinación de Emergencias</p>
+    </footer>
+
+    <!-- Script cliente: consume la API REST y maneja la interactividad del frontend -->
+    <script src="app.js"></script>
+</body>
+</html>

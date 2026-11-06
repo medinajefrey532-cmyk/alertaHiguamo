@@ -1,0 +1,126 @@
+[
+  {
+    "id": "REF-001",
+    "nombre": "Liceo Gastón Fernando Deligne",
+    "provincia": "San Pedro de Macorís",
+    "municipio": "San Pedro de Macorís",
+    "direccion": "Av. General Cabral, San Pedro de Macorís",
+    "coordenadas": {
+      "lat": 18.459,
+      "lng": -69.308
+    },
+    "encargado": {
+      "nombre": "Lic. Ana Mercedes Morales",
+      "telefono": "809-529-1122"
+    },
+    "capacidadTotal": 150,
+    "espaciosOcupados": 45,
+    "espaciosDisponibles": 105,
+    "estado": "operativo",
+    "servicios": [
+      "agua_potable",
+      "energia_electrica",
+      "bannos",
+      "cocina_comunitaria"
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T16:00:00.000Z",
+        "variacion": 45,
+        "ocupadosResultante": 45,
+        "accion": "Ingreso de 45 persona(s) evacuadas de Barrio Blanco. Total alojadas: 45/150",
+        "usuario": "Lic. Ana Mercedes Morales"
+      },
+      {
+        "fecha": "2026-11-02T12:00:00.000Z",
+        "variacion": 0,
+        "ocupadosResultante": 0,
+        "accion": "Refugio habilitado con capacidad para 150 personas",
+        "usuario": "Defensa Civil San Pedro"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T16:00:00.000Z"
+  },
+  {
+    "id": "REF-002",
+    "nombre": "Polideportivo Hato Mayor del Rey",
+    "provincia": "Hato Mayor",
+    "municipio": "Hato Mayor del Rey",
+    "direccion": "Calle Duarte s/n, Sector Ondina",
+    "coordenadas": {
+      "lat": 18.7628,
+      "lng": -69.2568
+    },
+    "encargado": {
+      "nombre": "Prof. Roberto Castillo",
+      "telefono": "829-456-7890"
+    },
+    "capacidadTotal": 200,
+    "espaciosOcupados": 120,
+    "espaciosDisponibles": 80,
+    "estado": "operativo",
+    "servicios": [
+      "agua_potable",
+      "planta_electrica",
+      "colchones",
+      "asistencia_medica"
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T15:30:00.000Z",
+        "variacion": 120,
+        "ocupadosResultante": 120,
+        "accion": "Ingreso de 120 persona(s) evacuadas del sector Ondina y El Valle. Total alojadas: 120/200",
+        "usuario": "Prof. Roberto Castillo"
+      },
+      {
+        "fecha": "2026-11-02T11:00:00.000Z",
+        "variacion": 0,
+        "ocupadosResultante": 0,
+        "accion": "Refugio habilitado con capacidad para 200 personas",
+        "usuario": "Gobernación Provincial Hato Mayor"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T15:30:00.000Z"
+  },
+  {
+    "id": "REF-003",
+    "nombre": "Escuela Básica Fernando Arturo de Meriño",
+    "provincia": "Monte Plata",
+    "municipio": "Monte Plata",
+    "direccion": "Calle Meriño esq. Altagracia",
+    "coordenadas": {
+      "lat": 18.809,
+      "lng": -69.785
+    },
+    "encargado": {
+      "nombre": "Mtra. Carmen Julia Reyes",
+      "telefono": "809-551-2244"
+    },
+    "capacidadTotal": 100,
+    "espaciosOcupados": 95,
+    "espaciosDisponibles": 5,
+    "estado": "operativo",
+    "servicios": [
+      "agua_potable",
+      "bannos"
+    ],
+    "historial": [
+      {
+        "fecha": "2026-11-02T17:20:00.000Z",
+        "variacion": 95,
+        "ocupadosResultante": 95,
+        "accion": "Ingreso de 95 persona(s) evacuadas por crecida del río Comate. Total alojadas: 95/100",
+        "usuario": "Mtra. Carmen Julia Reyes"
+      },
+      {
+        "fecha": "2026-11-02T13:00:00.000Z",
+        "variacion": 0,
+        "ocupadosResultante": 0,
+        "accion": "Refugio habilitado con capacidad para 100 personas",
+        "usuario": "Alcaldía Monte Plata"
+      }
+    ],
+    "fechaActualizacion": "2026-11-02T17:20:00.000Z"
+  }
+]

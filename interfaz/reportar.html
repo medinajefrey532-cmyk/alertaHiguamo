@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos de la página y título -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Emergencia — Alerta Higuamo</title>
+</head>
+
+<body>
+
+    <!-- Encabezado institucional con navegación -->
+    <header id="encabezado-principal">
+        <div class="encabezado-contenido">
+            <!-- Logotipo del sistema -->
+            <a href="index.html" class="logo-enlace">
+                <img src="imagenes/logo.png" alt="Logo Alerta Higuamo" class="logo">
+                <div class="logo-texto">
+                    <h1>Alerta Higuamo</h1>
+                    <p>Región Higuamo • San Pedro • Hato Mayor • Monte Plata</p>
+                </div>
+            </a>
+            
+            <!-- Barra de navegación regional -->
+            <nav class="menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="reportar.html" class="nav-link active btn-nav-alerta">Reportar Emergencia</a>
+                <a href="consultar.html" class="nav-link">Consultar Estado</a>
+                <a href="registro.html" class="nav-link">Registro</a>
+                <a href="mapa.html" class="nav-link">Mapa Regional</a>
+                <a href="refugios.html" class="nav-link">Refugios</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor del formulario de reporte -->
+    <main class="contenedor">
+
+        <!-- Tarjeta principal que envuelve el formulario ciudadano -->
+        <section class="card card-alerta">
+            <h2>Formulario de Reporte de Emergencia</h2>
+            <p style="color: var(--texto-secundario); margin-bottom: 20px;">Completa la siguiente información para alertar a los equipos de socorro de la Región Higuamo. Los campos con asterisco (*) son obligatorios.</p>
+
+            <!-- Mensaje de confirmación: muestra el código asignado (ej. INC-004) al guardar con éxito -->
+            <div id="alerta-registro-exito" class="alerta-exito" style="display: none;"></div>
+
+            <!-- Formulario que envía los datos mediante POST /api/incidencias -->
+            <form id="form-registro-incidencia" class="formulario-emergencia">
+                <!-- Campo: Título breve de la emergencia -->
+                <div class="form-grupo">
+                    <label for="inc-titulo">Título de la situación de emergencia *</label>
+                    <input type="text" id="inc-titulo" required placeholder="Ej: Inundación en calle principal por desborde de río" minlength="5">
+                </div>
+
+                <!-- Fila: Tipo de incidente y Provincia de la Región Higuamo -->
+                <div class="form-row">
+                    <!-- Selector del tipo de situación (inundación, carretera bloqueada, etc.) -->
+                    <div class="form-grupo">
+                        <label for="inc-tipo">Tipo de Emergencia *</label>
+                        <select id="inc-tipo" required>
+                            <option value="">-- Seleccionar tipo --</option>
+                            <option value="inundacion">Inundación de viviendas o vías</option>
+                            <option value="carretera_bloqueada">Carretera bloqueada / Deslizamiento</option>
+                            <option value="comunidad_aislada">Comunidad aislada sin acceso</option>
+                            <option value="deslizamiento">Deslizamiento de tierra</option>
+                            <option value="colapso_estructura">Colapso de estructura o tendido eléctrico</option>
+                            <option value="necesidad_suministros">Necesidad urgente de alimentos o agua</option>
+                            <option value="otro">Otra emergencia</option>
+                        </select>
+                    </div>
+                    <!-- Selector de provincia: restringido a las 3 provincias de la Región Higuamo -->
+                    <div class="form-grupo">
+                        <label for="inc-provincia">Provincia de la Región Higuamo *</label>
+                        <select id="inc-provincia" required>
+                            <option value="">-- Seleccionar provincia --</option>
+                            <option value="San Pedro de Macorís">San Pedro de Macorís</option>
+                            <option value="Hato Mayor">Hato Mayor</option>
+                            <option value="Monte Plata">Monte Plata</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Fila: Municipio y Sector o Comunidad específica -->
+                <div class="form-row">
+                    <!-- Campo de texto: Municipio donde ocurre el evento -->
+                    <div class="form-grupo">
+                        <label for="inc-municipio">Municipio *</label>
+                        <input type="text" id="inc-municipio" required placeholder="Ej: Consuelo, Sabana de la Mar, Bayaguana...">
+                    </div>
+                    <!-- Campo de texto: Comunidad, barrio, calle o tramo carretero exacto -->
+                    <div class="form-grupo">
+                        <label for="inc-comunidad">Comunidad, Sector o Calle *</label>
+                        <input type="text" id="inc-comunidad" required placeholder="Ej: Barrio Blanco, Sector El Puerto, Km 15">
+                    </div>
+                </div>
+
+                <!-- Fila: Gravedad estimada y cantidad de personas afectadas -->
+                <div class="form-row">
+                    <!-- Selector de prioridad inicial -->
+                    <div class="form-grupo">
+                        <label for="inc-prioridad">Nivel de Gravedad</label>
+                        <select id="inc-prioridad">
+                            <option value="alta">Alta (Vidas en peligro inmediato o personas incomunicadas)</option>
+                            <option value="media" selected>Media (Viviendas o caminos anegados sin peligro vital inminente)</option>
+                            <option value="baja">Baja (Riesgo menor o daño preventivo)</option>
+                        </select>
+                    </div>
+                    <!-- Estimación de personas o familias afectadas -->
+                    <div class="form-grupo">
+                        <label for="inc-afectados">Personas afectadas estimadas</label>
+                        <input type="number" id="inc-afectados" min="0" placeholder="Ej: 20">
+                    </div>
+                </div>
+
+                <!-- Campo de área de texto: detalles adicionales para orientar a los rescatistas -->
+                <div class="form-grupo">
+                    <label for="inc-descripcion">Detalles de la Situación</label>
+                    <textarea id="inc-descripcion" rows="4" placeholder="Describe los accesos bloqueados, familias afectadas, presencia de niños o ancianos que requieran rescate..."></textarea>
+                </div>
+
+                <!-- Fila: Datos de contacto de la persona que reporta -->
+                <div class="form-row">
+                    <div class="form-grupo">
+                        <label for="inc-nombre">Nombre de contacto (opcional)</label>
+                        <input type="text" id="inc-nombre" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="inc-contacto">Teléfono de contacto</label>
+                        <input type="tel" id="inc-contacto" placeholder="809-555-0000">
+                    </div>
+                </div>
+
+                <!-- Botón de envío que dispara el evento submit hacia la API -->
+                <button type="submit" class="btn btn-grande btn-emergencia">Enviar Reporte de Emergencia</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Pie de página institucional -->
+    <footer>
+        <p><strong>ComunidadAlerta Higuamo</strong> — San Pedro de Macorís • Hato Mayor • Monte Plata</p>
+        <p>© 2026 Plataforma de Gestión y Coordinación de Emergencias</p>
+    </footer>
+
+    <!-- Script cliente para gestionar el envío del formulario -->
+    <script src="app.js"></script>
+</body>
+</html>

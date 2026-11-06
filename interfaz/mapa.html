@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos de la vista del mapa -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Librería Leaflet para renderizado del mapa interactivo (soporte local y fallback CDN) -->
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';" />
+    <script src="vendor/leaflet/leaflet.js" onerror="this.onerror=null;this.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';"></script>
+    <link rel="icon" type="image/png" href="imagenes/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Regional — Alerta Higuamo</title>
+</head>
+
+<body>
+
+    <!-- Encabezado principal del portal -->
+    <header id="encabezado-principal">
+        <div class="encabezado-contenido">
+            <!-- Logotipo del sistema -->
+            <a href="index.html" class="logo-enlace">
+                <img src="imagenes/logo.png" alt="Logo Alerta Higuamo" class="logo">
+                <div class="logo-texto">
+                    <h1>Alerta Higuamo</h1>
+                    <p>Región Higuamo • San Pedro • Hato Mayor • Monte Plata</p>
+                </div>
+            </a>
+            
+            <!-- Barra de navegación regional -->
+            <nav class="menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="reportar.html" class="nav-link btn-nav-alerta">Reportar Emergencia</a>
+                <a href="consultar.html" class="nav-link">Consultar Estado</a>
+                <a href="registro.html" class="nav-link">Registro</a>
+                <a href="mapa.html" class="nav-link active">Mapa Regional</a>
+                <a href="refugios.html" class="nav-link">Refugios</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor central -->
+    <main class="contenedor">
+
+        <!-- Tarjeta del mapa geoespacial interactivo -->
+        <section class="card">
+            <div class="flex-entre">
+                <div>
+                    <h2>Mapa Georreferenciado — Región Higuamo</h2>
+                    <p style="color: var(--texto-secundario); margin: 0;">Ubicación espacial de incidencias y albergues en las provincias de San Pedro de Macorís, Hato Mayor y Monte Plata.</p>
+                </div>
+                <!-- Botón para recentrar la vista en el centro geométrico de la Región Higuamo -->
+                <button type="button" class="btn btn-sm btn-outline" onclick="enfocarRegion('toda')">Centrar Mapa</button>
+            </div>
+
+            <!-- Botones de enfoque rápido: permiten mover la cámara a cada provincia con un clic -->
+            <div class="mapa-controles-bar">
+                <span class="label-enfoque">Enfocar provincia:</span>
+                <button type="button" class="btn btn-sm btn-outline" onclick="enfocarRegion('toda')">Toda la Región</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="enfocarRegion('spm')">San Pedro de Macorís</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="enfocarRegion('hato')">Hato Mayor</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="enfocarRegion('monte')">Monte Plata</button>
+            </div>
+
+            <!-- Leyenda visual de colores para interpretar los marcadores geográficos -->
+            <div class="mapa-leyenda">
+                <span class="leyenda-item"><span class="indicador-color ind-rojo"></span> Emergencia Crítica (Prioridad Alta)</span>
+                <span class="leyenda-item"><span class="indicador-color ind-ambar"></span> Emergencia Moderada (Media / Baja)</span>
+                <span class="leyenda-item"><span class="indicador-color ind-verde"></span> Refugio Oficial Operativo</span>
+            </div>
+
+            <!-- Contenedor DOM donde Leaflet inicializa el mapa con los tiles de OpenStreetMap -->
+            <div id="mapa-contenedor"></div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página institucional -->
+    <footer>
+        <p><strong>ComunidadAlerta Higuamo</strong> — San Pedro de Macorís • Hato Mayor • Monte Plata</p>
+        <p>© 2026 Plataforma de Gestión y Coordinación de Emergencias</p>
+    </footer>
+
+    <!-- Script cliente: inicializa Leaflet, consume la API y dibuja los puntos -->
+    <script src="app.js"></script>
+</body>
+</html>

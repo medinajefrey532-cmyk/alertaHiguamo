@@ -1,0 +1,26 @@
+{
+  "name": "alertahiguamo",
+  "version": "1.0.0",
+  "description": "Sistema de gestión y respuesta rápida a emergencias para la Región Higuamo (San Pedro de Macorís, Hato Mayor y Monte Plata) con API REST en Node.js y Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node api/tests/test-api.js"
+  },
+  "keywords": [
+    "higuamo",
+    "emergencias",
+    "api-rest",
+    "express",
+    "nodejs",
+    "uasd"
+  ],
+  "author": "Equipo Alerta Higuamo",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "leaflet": "^1.9.4"
+  }
+}

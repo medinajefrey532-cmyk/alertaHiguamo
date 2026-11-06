@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrega Hito API REST — ComunidadAlerta Higuamo (UASD)</title>
+  <style>
+    :root {
+      --azul-uasd: #1B365D;
+      --rojo-acento: #D9381E;
+      --gris-texto: #1E293B;
+      --gris-suave: #F1F5F9;
+      --borde: #CBD5E1;
+      --verde-pass: #166534;
+      --fondo-pass: #DCFCE7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--gris-texto);
+      line-height: 1.5;
+      background-color: #F8FAFC;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .hoja {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 48px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* Encabezado y Portada */
+    .header-institucional {
+      text-align: center;
+      border-bottom: 3px solid var(--azul-uasd);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .header-institucional h1 {
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      color: var(--azul-uasd);
+      margin: 0 0 6px 0;
+      text-transform: uppercase;
+    }
+
+    .header-institucional h2 {
+      font-size: 15px;
+      color: #475569;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+    }
+
+    .badge-hito {
+      display: inline-block;
+      background: var(--azul-uasd);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .titulo-proyecto {
+      font-size: 24px;
+      color: var(--azul-uasd);
+      margin: 8px 0;
+    }
+
+    .ficha-metadatos {
+      background: var(--gris-suave);
+      border-left: 4px solid var(--azul-uasd);
+      padding: 16px 20px;
+      border-radius: 0 6px 6px 0;
+      margin: 20px 0 28px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .ficha-metadatos p {
+      margin: 0;
+    }
+
+    .ficha-metadatos strong {
+      color: var(--azul-uasd);
+    }
+
+    /* Secciones */
+    h2.seccion-titulo {
+      font-size: 17px;
+      color: var(--azul-uasd);
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      text-align: justify;
+    }
+
+    /* Tablas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      border: 1px solid var(--borde);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--azul-uasd);
+      color: #FFFFFF;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+
+    .metodo {
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-align: center;
+      display: inline-block;
+      min-width: 50px;
+    }
+    .get { background: #E0F2FE; color: #0369A1; }
+    .post { background: #DCFCE7; color: #15803D; }
+    .put { background: #FEF3C7; color: #B45309; }
+    .patch { background: #EDE9FE; color: #6D28D9; }
+    .delete { background: #FEE2E2; color: #B91C1C; }
+
+    /* Bloques de Código JSON */
+    .codigo-bloque {
+      background: #0F172A;
+      color: #F8FAFC;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      margin: 8px 0 18px 0;
+      line-height: 1.45;
+    }
+
+    .consola-evidencias {
+      background: #0B1329;
+      color: #38BDF8;
+      padding: 16px 20px;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      border: 1px solid #1E293B;
+    }
+
+    .tag-pass {
+      color: #4ADE80;
+      font-weight: bold;
+    }
+
+    /* Botón Flotante para imprimir */
+    .boton-imprimir {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--rojo-acento);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(217, 56, 30, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 9999;
+    }
+
+    .boton-imprimir:hover {
+      background: #B91C1C;
+    }
+
+    /* Reglas para Guardar como PDF / Impresión */
+    @media print {
+      body {
+        background: #FFFFFF;
+        padding: 0;
+      }
+      .hoja {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .salto-pagina {
+        page-break-after: always;
+      }
+      table, .codigo-bloque, .consola-evidencias {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón flotante para generar el PDF con un solo clic -->
+  <button class="boton-imprimir no-print" onclick="window.print()">
+    Descargar / Guardar como PDF
+  </button>
+
+  <div class="hoja">
+
+    <!-- Encabezado Institucional UASD -->
+    <header class="header-institucional">
+      <h1>Universidad Autónoma de Santo Domingo (UASD)</h1>
+      <h2>Facultad de Ciencias • Escuela de Informática • Asignatura: Desarrollo Web / Proyecto Integrador</h2>
+      <div class="badge-hito">ENTREGA FINAL DEL HITO: DISEÑO E IMPLEMENTACIÓN DE LA API REST</div>
+      <h1 class="titulo-proyecto">ComunidadAlerta Higuamo</h1>
+      <p style="text-align: center; color: #64748B; margin: 0; font-size: 13.5px;">
+        Sistema de Gestión y Respuesta Rápida a Emergencias para la Región Higuamo
+      </p>
+    </header>
+
+    <!-- Ficha de Datos del Equipo y Proyecto -->
+    <div class="ficha-metadatos">
+      <div>
+        <p><strong>Integrantes del Equipo:</strong></p>
+        <p>• Jefrey Encarnación Medina — Matrícula: <strong>100687695</strong></p>
+        <p>• Jomil José Mota — Matrícula: <strong>100617004</strong></p>
+      </div>
+      <div>
+        <p><strong>Región Asignada:</strong> Higuamo (San Pedro de Macorís, Hato Mayor, Monte Plata)</p>
+        <p><strong>Tecnologías:</strong> Node.js, Express, JSON Asíncrono, HTML5, CSS3</p>
+        <p><strong>Repositorio GitHub:</strong> <a href="https://github.com/medinajefrey532-cmyk/alertaHiguamo.git" target="_blank" style="color: var(--azul-uasd); word-break: break-all;">medinajefrey532-cmyk/alertaHiguamo</a></p>
+      </div>
+    </div>
+
+    <!-- 1. Resumen y Planteamiento del Problema -->
+    <h2 class="seccion-titulo">1. Resumen del Proyecto y Planteamiento del Problema</h2>
+    <p>
+      En la <strong>Región Higuamo</strong> (formada por las provincias de San Pedro de Macorís, Hato Mayor y Monte Plata), ante fenómenos hidrometeorológicos frecuentes como tormentas y crecidas de los ríos Higuamo, Maguá, Soco y Comate, los reportes suelen llegar dispersos mediante llamadas o redes sociales. Esto ocasiona demoras críticas en la priorización de situaciones que amenazan vidas, duplicidad de esfuerzos y descoordinación logística en los refugios e insumos humanitarios.
+    </p>
+    <p>
+      <strong>ComunidadAlerta Higuamo</strong> centraliza estos reportes a través de una <strong>API REST formal construida en Node.js y Express</strong>, organizada en una arquitectura limpia de tres carpetas (<code>api/</code>, <code>interfaz/</code> y <code>base_de_datos/</code>), con persistencia asíncrona segura en JSON y validada con 25 pruebas automatizadas al 100% de éxito.
+    </p>
+
+    <!-- 2. Tabla de Cumplimiento -->
+    <h2 class="seccion-titulo">2. Resumen de Cumplimiento de Requisitos del Hito</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Requisito Exigido (UASD)</th>
+          <th style="width: 15%; text-align: center;">Estado</th>
+          <th>Detalle de Implementación en el Proyecto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Al menos 2 recursos principales</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Superado</td>
+          <td>Se definieron 3 recursos principales completos: <code>incidencias</code>, <code>refugios</code> y <code>recursos</code>, más el módulo de <code>estadisticas</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Mínimo 8 endpoints</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Superado</td>
+          <td>Se implementaron <strong>17 endpoints operativos</strong> en total.</td>
+        </tr>
+        <tr>
+          <td><strong>Operaciones GET, POST, PUT, PATCH, DELETE</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>Implementadas con estricta semántica REST en todos los recursos.</td>
+        </tr>
+        <tr>
+          <td><strong>Respuestas en formato JSON</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>100% de las respuestas estructuradas en JSON con formato uniforme: <code>{ success, mensaje, data, errores }</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Códigos HTTP apropiados</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>Uso riguroso de <code>200 OK</code>, <code>201 Created</code>, <code>400 Bad Request</code>, <code>404 Not Found</code> y <code>500 Server Error</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Manejo de errores y datos inválidos</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>Middleware centralizado en <code>errorHandler.js</code> y validaciones en <code>validators.js</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Validación de datos</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>Control de tipos, longitud de textos, catálogo estricto de provincias de Higuamo y límites de capacidad.</td>
+        </tr>
+        <tr>
+          <td><strong>Pruebas de todos los endpoints</strong></td>
+          <td style="text-align: center; color: var(--verde-pass); font-weight: bold;">Cumplido</td>
+          <td>Suite automatizada de <strong>25 pruebas</strong> con tasa de éxito del <strong>100%</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="salto-pagina"></div>
+
+    <!-- 3. Tabla de Endpoints -->
+    <h2 class="seccion-titulo">3. Tabla de Endpoints de la API REST</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">Método</th>
+          <th style="width: 32%;">Endpoint</th>
+          <th style="width: 16%;">Recurso</th>
+          <th>Descripción de la Operación</th>
+          <th style="width: 15%; text-align: center;">Códigos HTTP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/health</code></td>
+          <td>Sistema</td>
+          <td>Verificación de operatividad del servicio</td>
+          <td style="text-align: center;">200, 500</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/incidencias</code></td>
+          <td>Incidencias</td>
+          <td>Listar emergencias con filtros (provincia, prioridad, estado)</td>
+          <td style="text-align: center;">200, 500</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/incidencias/:id</code></td>
+          <td>Incidencias</td>
+          <td>Obtener detalle y trazabilidad de una emergencia (INC-xxx)</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo post">POST</span></td>
+          <td><code>/api/incidencias</code></td>
+          <td>Incidencias</td>
+          <td>Registrar nuevo reporte ciudadano con georreferenciación</td>
+          <td style="text-align: center;">201, 400</td>
+        </tr>
+        <tr>
+          <td><span class="metodo put">PUT</span></td>
+          <td><code>/api/incidencias/:id</code></td>
+          <td>Incidencias</td>
+          <td>Actualización integral de los datos del reporte</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo patch">PATCH</span></td>
+          <td><code>/api/incidencias/:id/estado</code></td>
+          <td>Incidencias</td>
+          <td>Actualizar estado operativo (pendiente, en_proceso, atendida, cerrada)</td>
+          <td style="text-align: center;">200, 400, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo delete">DELETE</span></td>
+          <td><code>/api/incidencias/:id</code></td>
+          <td>Incidencias</td>
+          <td>Eliminar un reporte del sistema</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/refugios</code></td>
+          <td>Refugios</td>
+          <td>Listar albergues oficiales y plazas disponibles</td>
+          <td style="text-align: center;">200, 500</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/refugios/:id</code></td>
+          <td>Refugios</td>
+          <td>Obtener datos y bitácora de un albergue (REF-xxx)</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo post">POST</span></td>
+          <td><code>/api/refugios</code></td>
+          <td>Refugios</td>
+          <td>Registrar nuevo refugio en la región</td>
+          <td style="text-align: center;">201, 400</td>
+        </tr>
+        <tr>
+          <td><span class="metodo put">PUT</span></td>
+          <td><code>/api/refugios/:id</code></td>
+          <td>Refugios</td>
+          <td>Actualización integral de datos del refugio</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo patch">PATCH</span></td>
+          <td><code>/api/refugios/:id/capacidad</code></td>
+          <td>Refugios</td>
+          <td>Variación delta (+/-) de personas alojadas con historial</td>
+          <td style="text-align: center;">200, 400, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo delete">DELETE</span></td>
+          <td><code>/api/refugios/:id</code></td>
+          <td>Refugios</td>
+          <td>Eliminar albergue del registro</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/recursos</code></td>
+          <td>Recursos</td>
+          <td>Listar inventario de suministros y almacenes</td>
+          <td style="text-align: center;">200, 500</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/recursos/:id</code></td>
+          <td>Recursos</td>
+          <td>Consultar un suministro específico (REC-xxx)</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo post">POST</span></td>
+          <td><code>/api/recursos</code></td>
+          <td>Recursos</td>
+          <td>Dar de alta un nuevo tipo de suministro humanitario</td>
+          <td style="text-align: center;">201, 400</td>
+        </tr>
+        <tr>
+          <td><span class="metodo patch">PATCH</span></td>
+          <td><code>/api/recursos/:id/entrega</code></td>
+          <td>Recursos</td>
+          <td>Despachar insumos hacia una emergencia vinculada</td>
+          <td style="text-align: center;">200, 400, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo delete">DELETE</span></td>
+          <td><code>/api/recursos/:id</code></td>
+          <td>Recursos</td>
+          <td>Eliminar un recurso del inventario</td>
+          <td style="text-align: center;">200, 404</td>
+        </tr>
+        <tr>
+          <td><span class="metodo get">GET</span></td>
+          <td><code>/api/estadisticas</code></td>
+          <td>Estadísticas</td>
+          <td>Métricas consolidadas de la región en tiempo real</td>
+          <td style="text-align: center;">200, 500</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="salto-pagina"></div>
+
+    <!-- 4. Ejemplos de Solicitudes y Respuestas -->
+    <h2 class="seccion-titulo">4. Ejemplos de Solicitudes y Respuestas JSON</h2>
+
+    <!-- Ejemplo 1 -->
+    <p><strong>A. Creación de Incidencia con Validación Exitosa (POST /api/incidencias)</strong></p>
+    <p><em>Petición JSON (Payload enviado por el cliente):</em></p>
+    <div class="codigo-bloque">{
+  "titulo": "Crecida del Río Soco anega viviendas en Ramón Santana",
+  "descripcion": "El agua cubrió la calle principal de Barrio Nuevo y penetró en cinco casas.",
+  "tipo": "inundacion",
+  "provincia": "San Pedro de Macorís",
+  "municipio": "Ramón Santana",
+  "comunidad": "Barrio Nuevo",
+  "prioridad": "alta",
+  "reportadoPor": {
+    "nombre": "Ana Luisa Gómez",
+    "contacto": "809-555-1234"
+  },
+  "afectadosEstimados": 25
+}</div>
+
+    <p><em>Respuesta del Servidor (HTTP 201 Created):</em></p>
+    <div class="codigo-bloque">{
+  "success": true,
+  "mensaje": "Incidencia registrada exitosamente.",
+  "data": {
+    "id": "INC-008",
+    "titulo": "Crecida del Río Soco anega viviendas en Ramón Santana",
+    "tipo": "inundacion",
+    "provincia": "San Pedro de Macorís",
+    "comunidad": "Barrio Nuevo",
+    "prioridad": "alta",
+    "estado": "pendiente",
+    "coordenadas": { "lat": 18.552, "lng": -69.178 },
+    "fechaReporte": "2026-11-06T18:00:00.000Z",
+    "historial": [
+      {
+        "fecha": "2026-11-06T18:00:00.000Z",
+        "accion": "Reporte registrado",
+        "usuario": "Ana Luisa Gómez"
+      }
+    ]
+  }
+}</div>
+
+    <!-- Ejemplo 2 -->
+    <p><strong>B. Manejo de Datos Inválidos (POST /api/incidencias — HTTP 400 Bad Request)</strong></p>
+    <p><em>Petición con campos faltantes y provincia fuera de la Región Higuamo:</em></p>
+    <div class="codigo-bloque">{
+  "titulo": "Río",
+  "provincia": "La Romana"
+}</div>
+    <p><em>Respuesta Estructurada de Error (HTTP 400):</em></p>
+    <div class="codigo-bloque">{
+  "success": false,
+  "mensaje": "Datos de incidencia inválidos.",
+  "errores": [
+    "El título es obligatorio y debe tener al menos 5 caracteres.",
+    "El tipo de incidencia es obligatorio y debe ser uno de: inundacion, deslizamiento, carretera_bloqueada, comunidad_aislada, necesidad_suministros, colapso_estructura, otro.",
+    "La provincia debe ser una de las de la Región Higuamo: San Pedro de Macorís, Hato Mayor, Monte Plata.",
+    "La comunidad o sector es obligatorio."
+  ]
+}</div>
+
+    <!-- Ejemplo 3 -->
+    <p><strong>C. Actualización de Capacidad de Refugio por Variación Delta (PATCH /api/refugios/REF-001/capacidad)</strong></p>
+    <p><em>Petición (Ingreso de 15 evacuados con protección contra alteraciones accidentales):</em></p>
+    <div class="codigo-bloque">{
+  "variacion": 15,
+  "usuario": "Encargado de Refugio"
+}</div>
+    <p><em>Respuesta (HTTP 200 OK con cálculo dinámico de plazas y bitácora):</em></p>
+    <div class="codigo-bloque">{
+  "success": true,
+  "mensaje": "Movimiento registrado: Ingreso de 15 persona(s) evacuadas. Total alojadas: 60/150. Plazas libres: 90.",
+  "data": {
+    "id": "REF-001",
+    "nombre": "Liceo Gastón Fernando Deligne",
+    "capacidadTotal": 150,
+    "espaciosOcupados": 60,
+    "espaciosDisponibles": 90,
+    "estado": "operativo"
+  }
+}</div>
+
+    <div class="salto-pagina"></div>
+
+    <!-- 5. Evidencias de Pruebas Automatizadas -->
+    <h2 class="seccion-titulo">5. Evidencias de Ejecución de Pruebas Automatizadas (Suite Oficial)</h2>
+    <p>
+      A continuación se presenta el registro de salida generado en la consola al ejecutar la suite completa de pruebas automatizadas mediante <code>npm test</code> (ejecutado sobre <code>api/tests/test-api.js</code> en el puerto temporal 3999):
+    </p>
+
+    <div class="consola-evidencias">=============================================================
+[TEST] INICIANDO SUITE DE PRUEBAS AUTOMATIZADAS - ALERTA HIGUAMO
+=============================================================
+
+Servidor de pruebas levantado en http://localhost:3999
+
+[MODULO 1] PRUEBAS GENERALES Y DE SALUD
+  <span class="tag-pass">[PASS]</span> GET /api/health - Verificación de operatividad del sistema (HTTP 200)
+  <span class="tag-pass">[PASS]</span> GET /api/ruta-fantasma-no-existe - Manejo de ruta no encontrada (404) (HTTP 404)
+
+[MODULO 2] PRUEBAS DEL RECURSO: INCIDENCIAS (/api/incidencias)
+  <span class="tag-pass">[PASS]</span> GET /api/incidencias - Listar todas las incidencias (HTTP 200)
+  <span class="tag-pass">[PASS]</span> GET /api/incidencias?provincia=... - Filtrar incidencias por provincia (HTTP 200)
+  <span class="tag-pass">[PASS]</span> GET /api/incidencias/:id - Obtener incidencia existente por ID (INC-001) (HTTP 200)
+  <span class="tag-pass">[PASS]</span> GET /api/incidencias/:id - Incidencia inexistente devuelve 404 (HTTP 404)
+  <span class="tag-pass">[PASS]</span> POST /api/incidencias - Registrar nueva incidencia exitosamente (201) (HTTP 201)
+  <span class="tag-pass">[PASS]</span> POST /api/incidencias - Validación de datos inválidos devuelve 400 (HTTP 400)
+  <span class="tag-pass">[PASS]</span> PUT /api/incidencias/:id - Actualización completa de incidencia (HTTP 200)
+  <span class="tag-pass">[PASS]</span> PATCH /api/incidencias/:id/estado - Actualizar estado a atendida (HTTP 200)
+  <span class="tag-pass">[PASS]</span> PATCH /api/incidencias/:id/estado - Estado inválido devuelve 400 (HTTP 400)
+  <span class="tag-pass">[PASS]</span> DELETE /api/incidencias/:id - Eliminar incidencia creada en prueba (HTTP 200)
+
+[MODULO 3] PRUEBAS DEL RECURSO: REFUGIOS (/api/refugios)
+  <span class="tag-pass">[PASS]</span> GET /api/refugios - Listar todos los refugios (HTTP 200)
+  <span class="tag-pass">[PASS]</span> GET /api/refugios/:id - Obtener refugio por ID (REF-001) (HTTP 200)
+  <span class="tag-pass">[PASS]</span> POST /api/refugios - Registrar un nuevo refugio (201) (HTTP 201)
+  <span class="tag-pass">[PASS]</span> PATCH /api/refugios/:id/capacidad - Variación delta positiva (+15) e historial (HTTP 200)
+  <span class="tag-pass">[PASS]</span> PATCH /api/refugios/:id/capacidad - Variación delta negativa (-10) e historial (HTTP 200)
+  <span class="tag-pass">[PASS]</span> PATCH /api/refugios/:id/capacidad - Ocupación excesiva devuelve 400 (HTTP 400)
+  <span class="tag-pass">[PASS]</span> DELETE /api/refugios/:id - Eliminar refugio de prueba (HTTP 200)
+
+[MODULO 4] PRUEBAS DEL RECURSO: RECURSOS (/api/recursos)
+  <span class="tag-pass">[PASS]</span> GET /api/recursos - Listar todos los recursos e inventario (HTTP 200)
+  <span class="tag-pass">[PASS]</span> POST /api/recursos - Registrar nuevo recurso de emergencia (201) (HTTP 201)
+  <span class="tag-pass">[PASS]</span> PATCH /api/recursos/:id/entrega - Despachar suministros y descontar stock (HTTP 200)
+  <span class="tag-pass">[PASS]</span> PATCH /api/recursos/:id/entrega - Solicitud de stock excesivo devuelve 400 (HTTP 400)
+  <span class="tag-pass">[PASS]</span> DELETE /api/recursos/:id - Eliminar recurso creado en prueba (HTTP 200)
+
+[MODULO 5] PRUEBAS DEL MODULO DE ESTADISTICAS (/api/estadisticas)
+  <span class="tag-pass">[PASS]</span> GET /api/estadisticas - Obtener métricas consolidadas de la Región Higuamo (HTTP 200)
+
+=============================================================
+RESUMEN DE PRUEBAS AUTOMATIZADAS
+=============================================================
+  Total pruebas:      25
+  Pruebas exitosas:   25
+  Pruebas fallidas:   0
+  Tasa de éxito:      100.0%
+=============================================================</div>
+
+    <!-- 6. Firmas y Créditos -->
+    <h2 class="seccion-titulo">6. Información de Entrega</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 36px; text-align: center;">
+      <div style="border-top: 1px solid #94A3B8; padding-top: 8px;">
+        <p style="margin: 0; font-weight: bold; text-align: center;">Jefrey Encarnación Medina</p>
+        <p style="margin: 0; font-size: 12px; color: #64748B; text-align: center;">Matrícula: 100687695</p>
+      </div>
+      <div style="border-top: 1px solid #94A3B8; padding-top: 8px;">
+        <p style="margin: 0; font-weight: bold; text-align: center;">Jomil José Mota</p>
+        <p style="margin: 0; font-size: 12px; color: #64748B; text-align: center;">Matrícula: 100617004</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
